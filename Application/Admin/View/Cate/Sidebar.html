@@ -1,0 +1,30 @@
+<!--sidebar-menu-->
+
+<div id="sidebar">
+    <ul>
+        <volist name="sidebarList" id='sidebarList'>
+            <empty name="sidebarList">
+                <li><a href="{:U($sidebarList['url'],'','php')}"><i class="icon icon-th-list"></i> <span>{$sidebarList.title}</span></a>
+                    <else/>
+                <li class="submenu"><a href="{:U($sidebarList['url'])}"><i class="icon icon-th-list"></i>
+                    <span>{$sidebarList.title}</span></a>
+                    <ul>
+                        <volist name="sidebarList['_child']" id="childrenList">
+                            <li>
+                                <a href="{:U($childrenList['url'])}">{$childrenList.title}</a>
+                            </li>
+                        </volist>
+                    </ul>
+                </li>
+            </empty>
+        </volist>
+    </ul>
+</div>
+<script>
+    $(function () {
+                $('#sidebar').find('a[href="__SELF__"]').closest('li.submenu').addClass('open  active');
+                //$('#sidebar').find('a[href="__SELF__"]').closest('li').addClass('active ');
+            }
+    );
+</script>
+<!--sidebar-menu-->

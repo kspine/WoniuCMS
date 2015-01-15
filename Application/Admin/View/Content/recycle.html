@@ -1,0 +1,175 @@
+<include file="Common:header" title="文章列表"/>
+{~W('Cate/Sidebar')}
+
+<!--main-container-part-->
+<script type="text/javascript">
+
+    function checkAll() {
+        var checkItems = document.getElementsByName("articleID");
+        for (var i = 0; i < checkItems.length; i++) {
+            checkItems[i].checked = "checked";
+        }
+    }
+    function checkAllNo() {
+        var checkItems = document.getElementsByName("articleID");
+        for (var i = 0; i < checkItems.length; i++) {
+            checkItems[i].checked = null;
+        }
+    }
+    function checkAllRevsern() {
+        var checkItems = document.getElementsByName("articleID");
+        for (var i = 0; i < checkItems.length; i++) {
+            if (checkItems[i].checked) {
+                checkItems[i].checked = null;
+            } else {
+                checkItems[i].checked = "checked";
+            }
+        }
+    }
+    function checkboxAllRevsern() {
+        var checkItems = document.getElementsByName("articleID");
+        var checkboxAllRevsernElement = document.getElementById("checkboxAllRevsern");
+        for (var i = 0; i < checkItems.length; i++) {
+            if (checkboxAllRevsernElement.checked) {
+                checkItems[i].checked = "chenked";
+            } else {
+                checkItems[i].checked = null;
+            }
+        }
+    }
+</script>
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!--Action boxes-->
+    <div class="container-fluid">
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                <h5>文章列表</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped with-check data-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th class="center">ID</th>
+                        <th style="max-width: 20%;">标题</th>
+                        <th>分类</th>
+                        <th field="date">更新时间</th>
+                        <th field="author">作者</th>
+                        <th field="operation">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="cList" id="cList">
+                        <tr>
+                            <td class="selected frist"><input type="checkbox" name="articleID" id="{$cList.id}"/>
+                            </td>
+                            <td class="center">{$cList.id}</td>
+                            <td style="max-width:300px;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;">
+                                <a title="{$cList.title}" href="{:U('/Article/'.$cList['id'])}"
+                                   target="_blank">{$cList.title}</a>
+                            </td>
+                            <td>{$cList.categoryTitle}</td>
+                            <td>{$cList.update_time|date="Y-m-d H:i:s",###}</td>
+                            <td>{$cList.author}</td>
+                            <td>
+                                <a href="{:U('Article/edit','','php')}?id={$cList['id']}"
+                                   target="_blank">编辑</a>|<a onclick="del({$cList['id']},this)" href="#">删除</a>|
+                                <if condition="$cList.status eq 1"><a onclick="switchStatus({$cList['id']},this)"
+                                                                      href="#" title="点击切换状态">还原发布</a>
+                                    <else/>
+                                    <a onclick="switchStatus({$cList['id']},this)" href="#" title="点击切换状态">还原存稿</a>
+                                </if>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
+                <script type="text/javascript">
+                    $(document).ready()
+                    {
+                        function switchStatus(id, obj) {
+                            if ($(obj).text() === "还原发布") {
+                                status = 1;
+                            } else {
+                                status = 0;
+                            }
+                            $.ajax({
+                                url: "{:U('Article/setStatus','','php')}?id=" + id + "&status=" + status,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+                                    $(obj).parent().parent().remove();
+                                },
+                                error: function () {
+                                    $.gritter.add({
+                                        title: '消息',
+                                        text: "还原失败！",
+                                        sticky: false
+                                    });
+                                }
+                            });
+                        }
+
+                        function del(id, obj) {
+                            $.ajax({
+                                url: "{:U('Article/del','','php')}?id=" + id,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+
+                                    $.gritter.add({
+                                        title: '消息',
+                                        text: "《" + data.title + "》删除成功",
+                                        sticky: false
+                                    });
+                                    $(obj).parent().parent().remove();
+                                },
+                                error: function () {
+                                    $.gritter.add({
+                                        title: '消息',
+                                        text: "删除失败！",
+                                        sticky: false
+                                    });
+                                }
+                            });
+                        }
+                    }
+
+                </script>
+
+            </div>
+            <div>
+                <span class="icon">
+            <input type="checkbox" id="title-checkbox" name="title-checkbox"/>
+            </span>
+                <button class="btn btn-primary" id="checkAll">全选</button>
+                <button id="checkAllNo" class="btn btn-primary">全不选</button>
+                <button id="checkAllRevsern" class="btn btn-primary">反选</button>
+                <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-primary  dropdown-toggle">操作 <span
+                            class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">删除</a></li>
+                        <li><a href="#">移动</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">改变状态</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end content -->
+</div>
+<script src="__PUBLIC__/Admin/js/jquery.dataTables.min.js"></script>
+<script src="__PUBLIC__/Admin/js/matrix.tables.js"></script>
+<script src="__PUBLIC__/Admin/js/jquery.uniform.js"></script>
+<script src="__PUBLIC__/Admin/js/select2.min.js"></script>
+<include file="Common:footer"/>

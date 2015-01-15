@@ -1,0 +1,169 @@
+<include file="Common:header" title="前台会员列表"/>
+{~W('Cate/Sidebar')}
+<!-- content -->
+
+
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i> 首页</a><a
+                href="#" class="current">前台会员列表</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+    <!-- content / right -->
+    <div class="container-fluid">
+        <!-- table -->
+
+        <div class="widget-box">
+            <!-- box / title -->
+            <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                <h5>用户列表</h5>
+            </div>
+            <!-- end box / title -->
+            <table title="用户列表" class="table table-bordered">
+                <thead>
+                <tr>
+                    <th class="frist"><input type="checkbox" id="checkboxAllRevsern"/></th>
+                    <th>用户ID</th>
+                    <th field="name">用户名</th>
+                    <th field="group">用户组</th>
+                    <th field="nickname">昵称</th>
+                    <th field="email">邮箱</th>
+                    <th >注册IP</th>
+                    <th >注册时间</th>
+                    <th >上次登陆IP</th>
+                    <th >上次登陆时间</th>
+                    <th field="lastLoginDate">登陆次数</th>
+                </tr>
+                </thead>
+                <volist name="userList" id="userList">
+                    <tr>
+                        <td class="frist"><input type="checkbox" id="{$userList.id}" name="{$userList.id}"/></td>
+                        <td>{$userList.id}</td>
+                        <td><a href="{:U('User/Info?id='.$userList['id'])}" target="_blank">{$userList.name}</a>
+                        </td>
+                        <td></td>
+                        <td>{$userList.nickname}</td>
+                        <td>{$userList.email}</td>
+                        <td>{$userList.reg_ip}</td>
+                        <td>{$userList.reg_time|date="Y-m-d H:i:s",###}</td>
+                        <td>{$userList.last_login_ip}</td>
+                        <td>{$userList.last_login_time|date="Y-m-d H:i:s",###}</td>
+                        <td>{$userList.login_count}</td>
+                    </tr>
+                </volist>
+            </table>
+            <button class="btn-primary" id="checkAll">全选</button>
+            <button class="btn-primary" id="checkAllNo">全不选</button>
+            <button class="btn-primary" id="checkAllRevsern">反选</button>
+            <button class="btn-primary" id="create-user">添加用户</button>
+        </div>
+        <div id="dialog-form">
+            <form id="create-user-form" method="post" action="{:U('Admin/User/UserAdd')}">
+                <table class="table">
+                    <tr>
+                        <td width="60">用户名</td>
+                        <td><input id="name" name="UserName" placeholder="请输入用户名" type="text" datatype="s6-18"  errormsg="昵称至少6个字符,最多18个字符！"></td>
+                    </tr>
+                    <tr>
+                        <td>密码</td>
+                        <td><input id="name" name="password" placeholder="请输入密码" type="password" plugin="passwordStrength"  datatype="*6-18" errormsg="密码至少6个字符,最多18个字符！" >
+                            <div class="passwordStrength">密码强度： <span>弱</span><span>中</span><span class="last">强</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>验证密码</td>
+                        <td><input id="name" name="password2" placeholder="请再次输入密码" type="password"  recheck="password"  datatype="*6-18" errormsg="两次输入的密码不一致！" ></td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td><input id="name" name="email" placeholder="请输入email" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>备注</td>
+                        <td><textarea name="remarks" placeholder="备注"></textarea></td>
+                    </tr>
+                    <tr><td></td><td><div id="output"></div>
+                        <input type="submit" class="btn btn-success" value="提交内容"></td></tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/Scripts/jquery.form.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Scripts/Validform_v5.3.2_min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/Validform.css" type="text/css" media="all"/>
+<script>
+    $(function () {
+        $("#create-user").click(function () {  $("#dialog-form").dialog("open");    });
+        $("#dialog-form").dialog({width:400,autoOpen: false,resizable: false, modal: true,          });
+        $("#create-user-form").Validform({ tiptype: 3, });
+/*        $("#create-user-form").ajaxForm({
+            target: '#output',  dataType: 'json',
+            success: function () {
+                $.gritter.add({  title: '消息',  text: "添加成功！", sticky: false});
+                $("#create-user-form").resetForm();
+                $('#dialog-form').dialog("close");
+            },
+            error: function () {
+                $('#output').fadeIn('slow').html('错误！请验证！');
+           }
+        });*/
+    });
+</script>
+<style>
+    #dialog-form {
+        display: none；
+    }
+
+    .ui-dialog {
+        background: #ffffff;
+    }
+
+    .ui-widget-overlay {
+        background: #999;
+        filter: alpha(Opacity=70);
+        filter: "alpha(opacity=70)";
+        opacity: 0.7;
+    }
+</style>
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("checkAll").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            for (var i = 0; i < checkItems.length; i++) {
+                checkItems[i].checked = "checked";
+            }
+        }
+        document.getElementById("checkAllNo").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            for (var i = 0; i < checkItems.length; i++) {
+                checkItems[i].checked = null;
+            }
+        }
+        document.getElementById("checkAllRevsern").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            for (var i = 0; i < checkItems.length; i++) {
+                if (checkItems[i].checked) {
+                    checkItems[i].checked = null;
+                } else {
+                    checkItems[i].checked = "checked";
+                }
+            }
+        }
+        document.getElementById("checkboxAllRevsern").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            var checkboxAllRevsernElement = document.getElementById("checkboxAllRevsern");
+            for (var i = 0; i < checkItems.length; i++) {
+                if (checkboxAllRevsernElement.checked) {
+                    checkItems[i].checked = "chenked";
+                } else {
+                    checkItems[i].checked = null;
+                }
+            }
+        }
+    }
+</script>
+<!-- end content -->
+<include file="Common:footer"/>

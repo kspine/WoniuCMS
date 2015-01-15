@@ -1,0 +1,20 @@
+<include file="Common:header" title="{$channelTitle}" channelID="{$channelID}"/>
+<div class="container-fluid container">
+    <div class="row-fluid" id="main">
+        <div class="span8" id="channelMain">
+            <h3>{$channelTitle}</h3>
+            <ul>
+                <volist name="alist" id="list">
+                    <li>
+                        <span>{$list.time|date="Y/m/d",###}</span>
+                        <a href="{:U('Article/'.$list['id'])}">{$list.title}</a>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+        <div class="span4" id="sidebar">
+            {~W('Cate/Sidebar')}
+        </div>
+    </div>
+</div>
+<include file="Common:footer"/>

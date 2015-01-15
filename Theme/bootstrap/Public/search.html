@@ -1,0 +1,24 @@
+<include file="Common:header" title="搜索-{$key}"/>
+<div class="container-fluid">
+    <div class="row-fluid" id="main">
+        <div class="span9" id="soMain">
+            <volist name="query" id="news" mod="3">
+                <div class="hero-unit">
+                    <h3><a href="{:U('Article/'.$news['id'])}" title="{$news.title}" target="_blank">{$news.title}</a>
+                    </h3>
+                    <hr />
+                    <p>{$news.description}</p>
+                    <hr />
+                    <p>
+                        <span class="articleInfo">{$news.author}发表于{$news.time|date="Y-m-d H:i:s",###},被浏览{$news.click}次</span>
+                    </p>
+                </div>
+
+            </volist>
+        </div>
+        <div class="span3" id="sidebar">
+            {:W('Sidebar')}
+        </div>
+    </div>
+</div>
+<include file="Common:footer"/>

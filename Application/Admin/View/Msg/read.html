@@ -1,0 +1,73 @@
+<include file="Common:header" title="查看信息"/>
+<!-- end header -->
+<!-- content -->
+
+{:W('AdminSidebar')}
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i> 首页</a><a
+                href="#" class="current">信息</a><a href="#" class="current">阅读信息</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+    <!-- content / right -->
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-list"></i> </span>
+                        <h5>标题:{$message.title}</h5>
+                    </div>
+                    <div class="widget-content">
+                        <p> {$message.content} </p>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <script type="text/javascript" charset="utf-8"
+                                src="__PUBLIC__/ueditor/editor_config.js"></script>
+                        <script type="text/javascript" charset="utf-8"
+                                src="__PUBLIC__/ueditor/editor_all_min.js"></script>
+                        <form method="post" name="msgSet" action="{:U('Msg/msgSet')}">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <script type="text/plain" id="myEditor">
+        <p>这里我可以写一些输入提示</p>
+
+                                        </script>
+                                        <script type="text/javascript">
+                                            UE.getEditor('myEditor', {
+                                                //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+                                                toolbars: [['FullScreen', 'Source', 'Undo', 'Redo', 'Bold', 'test']],
+                                                //focus时自动清空初始化时的内容
+                                                autoClearinitialContent: true,
+                                                //关闭字数统计
+                                                wordCount: false,
+                                                //关闭elementPath
+                                                elementPathEnabled: false
+                                                //更多其他参数，请参考editor_config.js中的配置项
+                                            })
+                                        </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <script type="text/javascript">$(ducument).ready(function () {
+                                            $("input[tupe=button]").button();
+                                        })</script>
+                                        <div class="button" id="msgButton" style="float:right">
+                                            <input type="button" value="删除"/>
+                                            <input type="button" value="回复"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end content -->
+<include file="Common:footer"/>

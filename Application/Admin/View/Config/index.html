@@ -1,0 +1,127 @@
+<include file="Common:header" title="网站设置"/>
+<!-- end header -->
+{~W('Cate/Sidebar')}
+<!--main-container-part-->
+
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+            Home</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!-- content / right -->
+    <div class="container-fluid">
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"> <i class="icon-list"></i> </span>
+                <h5>基础设置</h5>
+            </div>
+            <div class="widget-content">
+
+                <form action="" method="post">
+                    <dl>
+                        <dt>
+                        <dd>
+                            <label for="siteTitle">网站名称:</label></dd>
+                        <dd>
+                            <input type="text" name="siteTitle" id="siteTitle" value="" placeholder="请输入网站名称"/>{$config[0]['value']}
+                        </dd>
+                        </dt>
+                        <dt>
+                        <dd>
+                            <label for="miibeian">网站备案号:</label></dd>
+                        <dd>
+                            <input type="text" name="miibeian" id="miibeian" value=""/></dd>
+                        </dt>
+                        <dt>
+                        <dd>
+                            <label for="StatisticsCode">统计代码:</label></dd>
+                        <dd>
+                            <textarea type="text" name="StatisticsCode" id=" StatisticsCode" value=""> </textarea></dd>
+                        </dt>
+                        <input type="submit"/>
+                    </dl>
+                </form>
+            </div>
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"> <i class="icon-list"></i> </span>
+                <h5>模板设置</h5>
+            </div>
+            <div class="widget-content">
+
+                <form action="" method="post">
+                    <dt>
+                    <dd>模板设置：</dd>
+                    <dd>
+                        <input type="radio" name="selectTemplate" value="<#$templateDir[1]#>"/>
+                        <input type="radio" name="selectTemplate" value="<#$templateDir[2]#>"/>
+                        <input type="radio" name="selectTemplate" value="<#$templateDir.1#>"/>
+                    </dd>
+                    <dd>
+                        <label for="fileUpload">模板上传：</label></dd>
+                    <dd>
+                    </dt>
+                    <input type="file" id="fileUpload"/>
+                    <input type="submit"/>
+                </form>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"> <i class="icon-list"></i> </span>
+                <h5>菜单编辑</h5>
+            </div>
+            <div class="widget-content">
+                <table id="menu">
+                    <thead>
+                    <tr>
+                        <th field="sort" class="frist">排序</th>
+                        <th field="title">标题</th>
+                        <th field="poeration" style="width:30%">操作</th>
+                        <th class="selected last"><input type="checkbox" class="checkall"
+                                                         onclick="chackAll(messagesList);"/>
+                        </th>
+                    </tr>
+                    </thead>
+                    <volist name="headerMenu" id="headerMenu">
+                        <tr>
+                            <td class="frist">{$headerMenu.sort}</td>
+                            <td><a href="{:U('Msg/read?id='.$unReadMessageList['id'])}"
+                                   target="_blank">{$headerMenu.title}</a>
+                            </td>
+                            <td><a href="{:U('Msg/read?id='.$unReadMessageList['id'])}" target="_blank">启用</a>|<a>置顶</a>|<a>删除</a>|<a>向上一行</a>|<a>向下一行</a>
+                            </td>
+                            <td class="selected last"><input type="checkbox" name="messagesList"
+                                                             id="messages_{$unReadMessageList.id}"
+                                                             value="{$unReadMessageList.id}"/></td>
+                        </tr>
+                    </volist>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <volist name="Menu2" id="Menu2">
+                        <tr>
+                            <td class="frist">{$Menu.sort}</td>
+                            <td><a href="{:U('Msg/read?id='.$unReadMessageList['id'])}"
+                                   target="_blank">{$Menu2.title}</a></td>
+                            <td><a href="{:U('Msg/read?id='.$unReadMessageList['id'])}" target="_blank">查看</a>|<a>回复</a>|<a>删除</a>
+                            </td>
+                            <td class="selected last"><input type="checkbox" name="messagesList"
+                                                             id="messages_{$unReadMessageList.id}"
+                                                             value="{$unReadMessageList.id}"/></td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- end content / right -->
+</div>
+
+<!-- end content -->
+<include file="Common:footer"/>

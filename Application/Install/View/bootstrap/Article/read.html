@@ -1,0 +1,81 @@
+<include file="Common:header" title="{$article.title}" description="{$article.description}"
+         keywords="{$article.keywords}"/>
+<div class="container-fluid container">
+    <div class="row-fluid" id="main">
+        <div class="span8" id="mainBody">
+            <div id="map">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{$Think.config.SITE_DOMAIN}">{$Think.config.SITE_NAME}</a> <span
+                            class="divider">/</span>
+                    </li>
+                    <li>
+                        <a href="{:U('channel/'.$channel['id'])}">{$channel.title}</a> <span class="divider">/</span>
+                    </li>
+                    <li class="active">{$article.title}</li>
+                </ul>
+            </div>
+            <div id="articleMain">
+                <h3>{$article.title}</h3>
+                <hr/>
+                <div id="articleBody"> {$article.content}</div>
+                <hr/>
+                <p>
+                    <span class="articleInfo">{$article.author}发表于{$article.time|date="Y-m-d H:i:s",###},被浏览{$article.click}次</span>
+                </p>
+            </div>
+            <div class="row-fluid hidden-phone" style="margin-bottom:10px;">
+                <ul id="da-thumbs" class="da-thumbs">
+                    <li>
+                        <a href="#" target="_blank">
+                            <img src="__PUBLIC__/Static/images/qrcode.png">
+
+                            <div class="hot_info">
+                                <h2 title="本站二维码">二维码</h2>
+                                <em></em>
+
+                                <p title="本站二维码">二维码</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <img src="__PUBLIC__/Static/images/05.jpg">
+
+                            <div class="hot_info">
+                                <h2 title="懒人图库">懒人图库</h2>
+                                <em></em>
+
+                                <p title="学会偷懒 懒出境界！">学会偷懒 懒出境界！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <img src="__PUBLIC__/Static/images/05.jpg">
+
+                            <div class="hot_info">
+                                <h2 title="懒人图库">懒人图库</h2>
+                                <em></em>
+
+                                <p title="学会偷懒 懒出境界！">学会偷懒 懒出境界！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="subscribe">
+                        <a href="#" target="_blank">
+                            <h2>订阅<span>本站</span></h2>
+                            <img src="__PUBLIC__/Static/images/subscribe.png" alt="订阅职位">
+                        </a>
+                    </li>
+                </ul>
+                <script type="text/javascript" src="__PUBLIC__/Scripts/home.min.js"></script>
+            </div>
+        </div>
+        <div class="span4" id="sidebar">
+            {~W('Cate/Sidebar')}
+        </div>
+
+    </div>
+</div>
+<include file="Common:footer"/>

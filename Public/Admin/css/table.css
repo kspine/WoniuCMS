@@ -1,0 +1,18 @@
+/* ------------------------content -> right -> box / table--------------------------- */
+div.widget-box table .frist input{margin:5px auto;}
+div.widget-box table th.left { text-align: left; }
+div.widget-box table th.right { text-align: right; }
+div.widget-box table th.center { text-align: center; }
+
+
+
+table#contentEdit {
+    margin: 0;
+    padding: 5px;
+}
+
+table#contentEdit th {
+    width: 100px;
+    text-align: center;
+}
+table#contentEdit td{padding: 5px;}

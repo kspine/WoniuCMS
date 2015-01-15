@@ -1,0 +1,140 @@
+<include file="Common:header" title="首页"/>
+<header id="show">
+    <div id="banner" class="row-fluid hidden-phone">
+        <ul id="banner_img">
+            <li class="item1">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2>野生程序猿，Let's Go!</h2>
+
+                        <p>不牛B的搬砖工不是好码农……</p>
+                        <a href="#" target="_blank">了解详细&gt;</a>
+                    </div>
+                    <div class="ad_img">
+                        <img src="__PUBLIC__/Static/images/20120905092323647.png" width="506" height="404"
+                             alt="互联网品牌传播解决方案"/>
+                    </div>
+                </div>
+            </li>
+            <li class="item2">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2>Web应用(B/S)定制开发</h2>
+
+                        <p>
+                            自主研发、完善的开发框架。<br/>
+                            详细的需求调研及解决方案。<br/>
+                            实施项目经验丰富的项目团队。
+                        </p>
+                        <a href="#" target="_blank">了解详细&gt;</a>
+                    </div>
+                    <div class="ad_img">
+                        <img src="__PUBLIC__/Static/images/20120830015430148.png" width="506" height="404"
+                             alt="Web应用(B/S)定制开发"/>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="item3">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2>汽车派</h2>
+
+                        <p>
+                            共享汽车维修资料。<br/>
+                            急你所急，供你所需<br/>
+                            聚集各种各样的汽车维修学习资料
+                        </p>
+                        <a href="#" target="_blank">了解详细&gt;</a>
+                    </div>
+                    <div class="ad_img">
+                        <img src="__PUBLIC__/Static/images/autopai.png" width="506" height="404" alt="汽车派"/>
+                    </div>
+                </div>
+            <li class="item4">
+                <div class="wrapper">
+                    <div class="ad_txt">
+                        <h2>蜗牛维护盘</h2>
+
+                        <p>
+                            工作更高效，更轻松。<br/>
+                            格盘、系统安装、手工杀毒、数据恢复<br/>
+                            得心应手……
+                        </p>
+                        <a href="#" target="_blank">了解详细&gt;</a>
+                    </div>
+                    <div class="ad_img">
+                        <img src="__PUBLIC__/Static/images/woniuboot.png" width="506" height="404"
+                             alt="蜗牛维护盘"/>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+        <div id="banner_ctr">
+            <div id="drag_ctr"></div>
+            <ul>
+                <li class="first-item">###</li>
+                <li>网站首页</li>
+                <li>应用系统开发</li>
+                <li>网络整合营销</li>
+                <li>蜗牛维护盘</li>
+                <li class="last-item">###</li>
+            </ul>
+            <div id="drag_arrow"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/Static/js/fashionfoucs.js"></script>
+</header>
+<div class="container-fluid container">
+    <div class="row-fluid">
+        <div class="col3 span3 recommend">
+            <h3>非常推荐</h3>
+
+            <div class="metro">
+                <div id="rss"><b class="icon" aria-hidden="true" data-icon="&#xe006;"></b></div>
+                <div id="list"><b class="icon" aria-hidden="true" data-icon="&#xe001;"></b></div>
+                <div id="at"><b class="icon" aria-hidden="true" data-icon="&#xe00f;"></b> <a target="_blank"
+                                                                                             href="http://wpa.qq.com/msgrd?v=3&uin=649984866&site=qq&menu=yes"><img
+                        border="0" src="http://wpa.qq.com/pa?p=2:649984866:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col3 span3 works">
+            <h3>作品展示</h3>
+            <ul>
+                <li><img src="__PUBLIC__/Static/images/test.jpg"/></li>
+                <li><img src="__PUBLIC__/Static/images/test.jpg"/></li>
+                <li><img src="__PUBLIC__/Static/images/test.jpg"/></li>
+                <li><img src="__PUBLIC__/Static/images/test.jpg"/></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="col3 span3 ">
+            <h3>视频中心</h3>
+            <embed src="http://player.youku.com/player.php/sid/XNjc1ODM4Nzg4/v.swf" allowFullScreen="true"
+                   quality="high" width="100%" height="210" align="middle" allowScriptAccess="always"
+                   type="application/x-shockwave-flash"></embed>
+            <p>诺基亚Icon 对比 三星S4 </p>
+        </div>
+
+        <div class="col3 span3 articleList">
+            <h3>最新文章</h3>
+            <ul>
+                <volist name="articleList" id="vo">
+                    <li><span>{$vo.time|date="m/d",###}</span> | <a href="{:U('Article/'.$vo['id'])}"
+                                                                    title="{$vo.title}"
+                                                                    target="_blank">{$vo.title}</a>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>
+
+<include file="Common:footer"/>

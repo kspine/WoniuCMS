@@ -1,0 +1,162 @@
+<include file="Common:header" title="文章列表"/>
+{~W('Cate/Sidebar')}
+
+<!--main-container-part-->
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("checkAll").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            for (var i = 0; i < checkItems.length; i++) {
+                checkItems[i].checked = "checked";
+            }
+        }
+        document.getElementById("checkAllNo").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            for (var i = 0; i < checkItems.length; i++) {
+                checkItems[i].checked = null;
+            }
+        }
+        document.getElementById("checkAllRevsern").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            for (var i = 0; i < checkItems.length; i++) {
+                if (checkItems[i].checked) {
+                    checkItems[i].checked = null;
+                } else {
+                    checkItems[i].checked = "checked";
+                }
+            }
+        }
+        document.getElementById("checkboxAllRevsern").onclick = function () {
+            var checkItems = document.getElementsByName("articleID");
+            var checkboxAllRevsernElement = document.getElementById("checkboxAllRevsern");
+            for (var i = 0; i < checkItems.length; i++) {
+                if (checkboxAllRevsernElement.checked) {
+                    checkItems[i].checked = "chenked";
+                } else {
+                    checkItems[i].checked = null;
+                }
+            }
+        }
+    }
+</script>
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!--Action boxes-->
+    <div class="container-fluid">
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                <h5>文章列表</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                    <thead>
+                    <tr>
+                        <th class="selected frist"><input type="checkbox" id="checkboxAllRevsern"/></th>
+                        <th class="frist">ID</th>
+                        <th style="max-width: 20%;">标题</th>
+                        <th>频道</th>
+                        <th field="date">时间</th>
+                        <th field="author">作者</th>
+                        <th field="status">状态</th>
+                        <th field="operation">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="cList" id="cList">
+                        <tr>
+                            <td class="selected frist"><input type="checkbox" name="articleID" id="{$cList.id}"/>
+                            </td>
+                            <td class="frist">{$cList.id}</td>
+                            <td style="max-width:300px;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;">
+                                <a title="{$cList.title}" href="{:U('/Article/'.$cList['id'])}"
+                                   target="_blank">{$cList.title}</a>
+                            </td>
+                            <td>{$cList.channelTitle}</td>
+                            <td>{$cList.time|date="Y-m-d",###}</td>
+                            <td>{$cList.author}</td>
+                            <td>
+                                <if condition="$cList.status eq 1"><a onclick="switchStatus({$cList['id']},this)"
+                                                                      href="#" title="点击切换状态">发布</a>
+                                    <else/>
+                                    <a onclick="switchStatus({$cList['id']},this)" href="#" title="点击切换状态"> 存稿</a>
+                                </if>
+                            </td>
+                            <td>
+                                <a href="{:U('Article/edit','','php')}?type={:$type}&id={$cList['id']}"
+                                   target="_blank">编辑</a>|<a onclick="del({$cList['id']},this)" href="#">删除</a></td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
+                <script type="text/javascript">
+                    $(document).ready()
+                    {
+                        function switchStatus(id, obj) {
+                            if ($(obj).text() === "发布") {
+                                status = 0;
+                            } else {
+                                status = 1;
+                            }
+                            $.ajax({
+                                url: "{:U('Article/setStatus','','php')}?type={:$type}&id=" + id + "&status=" + status,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+                                    if (data.status == 1) {
+                                        $(obj).text('发布');
+                                    } else {
+                                        $(obj).text('存稿');
+                                    }
+                                },
+                                error: function () {
+                                    $.gritter.add({
+                                        title: '消息',
+                                        text: "删除失败！",
+                                        sticky: false
+                                    });
+                                }
+                            });
+                        }
+
+                        function del(id, obj) {
+                            $.ajax({
+                                url: "{:U('Content/del','','php')}?type={:$type}&id=" + id,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+
+                                    $.gritter.add({
+                                        title: '消息',
+                                        text: "《" + data.title + "》删除成功",
+                                        sticky: false
+                                    });
+                                    $(obj).parent().parent().remove();
+                                },
+                                error: function () {
+                                    $.gritter.add({
+                                        title: '消息',
+                                        text: "删除失败！",
+                                        sticky: false
+                                    });
+                                }
+                            });
+                        }
+                    }
+
+                </script>
+
+            </div>
+            <input type="button" id="checkAll" value="全选">
+            <input type="button" id="checkAllNo" value="全不选">
+            <input type="button" id="checkAllRevsern" value="反选">
+        </div>
+    </div>
+    <!-- end content -->
+</div>
+<include file="Common:footer"/>

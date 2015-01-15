@@ -1,0 +1,118 @@
+<include file="Common:header" title="信息列表"/>
+{~W('Cate/Sidebar')}
+
+<!--main-container-part-->
+
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i> 首页</a><a
+                href="#" class="current">信息列表</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+    <!-- content / right -->
+    <div class="container-fluid">
+        <!-- table -->
+
+        <div class="widget-box">
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab1">未读消息</a></li>
+                    <li><a data-toggle="tab" href="#tab2">已读消息</a></li>
+                    <li><a data-toggle="tab" href="#tab3">全部消息</a></li>
+                </ul>
+            </div>
+            <div class="widget-content tab-content">
+                <div id="tab1" class="tab-pane active">
+                    <table id="unReadMessageList" class="table table-bordered table-striped with-check">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+                            <th field="ID">ID</th>
+                            <th field="title">标题</th>
+                            <th field="sendTime">时间</th>
+                            <th field="sender">发送者</th>
+                            <th field="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <volist name="unReadMessageList" id="unReadMessageList">
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td>{$unReadMessageList.id}</td>
+                                <td><a href="__GROUP__/Msg/read/id/{$unReadMessageList.id}.html" target="_blank">{$unReadMessageList.title}</a>
+                                </td>
+                                <td>{$unReadMessageList.sendTime||date="Y-m-d H:i:s",###}</td>
+                                <td title="发送者：{$unReadMessageList.sender}，发送者ID：{$unReadMessageList.senderID}">
+                                    {$unReadMessageList.sender}
+                                </td>
+                                <td><a href="{:U('Msg/read?id='.$unReadMessageList['id'])}"
+                                       target="_blank">查看</a>|<a>回复</a>|<a>删除</a></td>
+                            </tr>
+                        </volist>
+                    </table>
+                </div>
+                <div id="tab2" class="tab-pane">
+                    <table id="readMessageList" class="table table-bordered table-striped with-check">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+                            <th field="ID">ID</th>
+                            <th field="title">标题</th>
+                            <th field="sendTime">时间</th>
+                            <th field="sender">发送者</th>
+                            <th field="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <volist name="readMessageList" id="readMessageList">
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td>{$readMessageList.id}</td>
+                                <td><a href="__GROUP__/Msg/read/id/{$readMessageList.id}.html" target="_blank">{$readMessageList.title}</a>
+                                </td>
+                                <td>{$readMessageList.sendTime||date="Y-m-d H:i:s",###}</td>
+                                <td title="发送者：{$readMessageList.sender}，发送者ID：{$readMessageList.senderID}">
+                                    {$readMessageList.sender}
+                                </td>
+                                <td><a href="{:U('Msg/read?id='.$readMessageList['id'])}"
+                                       target="_blank">查看</a>|<a>回复</a>|<a>删除</a></td>
+                            </tr>
+                        </volist>
+                    </table>
+                </div>
+                <div id="tab3" class="tab-pane">
+                    <table id="messageList" class="table table-bordered table-striped with-check">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+                            <th field="ID">ID</th>
+                            <th field="title">标题</th>
+                            <th field="sendTime">时间</th>
+                            <th field="sender">发送者</th>
+                            <th field="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <volist name="messageList" id="messageList">
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td>{$messageList.id}</td>
+                                <td><a href="__GROUP__/Msg/read/id/{$messageList.id}.html" target="_blank">{$messageList.title}</a>
+                                </td>
+                                <td>{$messageList.sendTime||date="Y-m-d H:i:s",###}</td>
+                                <td title="发送者：{$messageList.sender}，发送者ID：{$messageList.senderID}">
+                                    {$messageList.sender}
+                                </td>
+                                <td><a href="{:U('Msg/read?id='.$messageList['id'])}"
+                                       target="_blank">查看</a>|<a>回复</a>|<a>删除</a></td>
+                            </tr>
+                        </volist>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- end table -->
+    </div>
+</div>
+<!-- end content / right -->
+</div>
+<!-- end content -->
+<include file="Common:footer"/>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<head>
+    <title>用户注册|{:C('SITE_NAME')}
+    </title>
+    <meta charset=utf-8/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="__PUBLIC__/icon/style.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap-responsive.min.css" >
+    <link rel="stylesheet" href="__PUBLIC__/css/Validform.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+    <link  rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css"/>
+    <!--[if IE]>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap/js/bootstrap-ie.js"></script>
+    <![endif]-->
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap/css/bootstrap-ie6.min.css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap/css/ie.css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <script type="text/javascript" src="__PUBLIC__/icon/lte-ie7.js"></script><![endif]-->
+    <script src="__PUBLIC__/Scripts/jquery.js"></script>
+    <script  src="__PUBLIC__/Scripts/jquery.plugin.min.js" ></script>
+    <script src="__PUBLIC__/Scripts/Validform_v5.3.2_min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#loginform").Validform(
+                    {
+                        tiptype: function (msg, o, cssctl) {
+                            var objtip = $("#msg");
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        },
+                        ajaxPost: true,
+                        callback: function (data) {
+                            if (data.status == "y") {
+                                setTimeout(function () {
+                                    window.location.href = '__APP__/login.php';
+                                }, 1000);
+                            }
+                        }
+                    }
+            );
+        });
+    </script>
+
+    <Script>
+        //重载验证码
+        function fleshVerify() {
+            var timenow = new Date().getTime();
+            document.getElementById('verifyImg').src = "{:U('Admin/Auth/verify')}?" + timenow;
+        }
+    </Script>
+
+    <style>
+        body{
+            background: url("__APP__/index/img?dir=Public/images/background");
+        }
+        .mask{height:80%; width:100%; position:fixed; _position:absolute; top:10%; }
+        .opacity{ opacity:0.3; filter: alpha(opacity=30); background-color:#ffffff; }
+        #login{
+        ;opacity:0.9; filter: alpha(opacity=90);
+        }
+    </style>
+</head>
+<body>
+<div class="mask opacity"></div>
+<div id="login">
+    <div class="title">
+        <h4>用户注册</h4>
+    </div>
+    <div class="inner">
+        <form id="loginform" action="__URL__/loginAction" method="post">
+            <table id="loginTable">
+                <tr>
+                    <td>
+                        <div class="input-prepend"><span class="add-on icon" aria-hidden="true"
+                                                         data-icon="&#xe00e;"></span>
+                            <input class="span2" type="text" id="username" name="username" size="32"
+                                   placeholder="请输入用户名" datatype="s1-30"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-prepend"><span class="add-on icon" aria-hidden="true"
+                                                         data-icon="&#xe005;"></span>
+                            <input class="span2" type="password" id="password" name="password" size="32"
+                                   placeholder="请输入密码" datatype="*6-16" errormsg="密码范围在6~16位！">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-prepend"><span class="add-on icon" aria-hidden="true"
+                                                         data-icon="&#xe005;"></span>
+                            <input class="span2" type="password" id="password2" name="password" size="32"
+                                   placeholder="请重复密码" datatype="*6-16" errormsg="请重复输入上面的密码！">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-prepend"><span class="add-on icon" aria-hidden="true"
+                                                         data-icon="&#xe005;"></span>
+                            <input class="span2" type="text" id="email" name="email" size="32"
+                                   placeholder="请输入email" datatype="*6-32" errormsg="长度在6~32位！">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div input-prepend><span class="add-on"></span><span><img
+                                src="{:U('Admin/Auth/verify')}" id="verifyImg"
+                                onclick="fleshVerify()" title="单击刷新验证码"/></span><span id="msg"></span></div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="submit" class="input-prepend input-append"><span class="add-on"></span>
+                            <input class="span1" type="text" id="verify" name="verify" placeholder="验证码" size="4"
+                                   datatype="*4-5" nullmsg="请输入验证码！"><checkbox></checkbox>
+                            <button type="submit" value="ture" class="btn ajaxPost ">注册</button>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+    </div>
+    <!-- end login -->
+</div>
+</body>
+</html>

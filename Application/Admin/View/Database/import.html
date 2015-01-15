@@ -1,0 +1,93 @@
+<include file="Common:header" title="网站设置"/>
+<!-- end header -->
+{~W('Cate/Sidebar')}
+<!--main-container-part-->
+
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="index.html" title="返回后台主页" class="tip-bottom"><i class="icon-home"></i>
+            Home</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!-- content / right -->
+    <div class="container-fluid">
+        <div class="widget-box">
+            <!-- box / title -->
+            <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                <h5>备份列表</h5>
+            </div>
+            <table  class="table table-bordered">
+                <thead>
+                <tr>
+                    <th width="200">备份名称</th>
+                    <th width="80">卷数</th>
+                    <th width="80">压缩</th>
+                    <th width="80">数据大小</th>
+                    <th width="200">备份时间</th>
+                    <th>状态</th>
+                    <th width="120">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="list" id="data">
+                    <tr>
+                        <td>{$data.time|date='Ymd-His',###}</td>
+                        <td>{$data.part}</td>
+                        <td>{$data.compress}</td>
+                        <td>{$data.size|format_bytes}</td>
+                        <td>{$key}</td>
+                        <td>-</td>
+                        <td class="action">
+                            <a class="db-import" href="{:U('import?time='.$data['time'])}">还原</a>&nbsp;
+                            <a class="ajax-get confirm" href="{:U('del?time='.$data['time'])}">删除</a>
+                        </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <!-- /应用列表 -->
+        <script type="text/javascript">
+            $(".db-import").click(function () {
+                var self = this, status = ".";
+                $.get(self.href, success, "json");
+                window.onbeforeunload = function () {
+                    return "正在还原数据库，请不要关闭！"
+                }
+                return false;
+
+                function success(data) {
+                    if (data.status) {
+                        if (data.gz) {
+                            data.info += status;
+                            if (status.length === 5) {
+                                status = ".";
+                            } else {
+                                status += ".";
+                            }
+                        }
+                        $(self).parent().prev().text(data.info);
+                        if (data.part) {
+                            $.get(self.href,
+                                    {"part": data.part, "start": data.start},
+                                    success,
+                                    "json"
+                            );
+                        } else {
+                            window.onbeforeunload = function () {
+                                return null;
+                            }
+                        }
+                    } else {
+                        updateAlert(data.info, 'alert-error');
+                    }
+                }
+            });
+        </script>
+    </div>
+</div>
+
+<!-- end content -->
+<include file="Common:footer"/>

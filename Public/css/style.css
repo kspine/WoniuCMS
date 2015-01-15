@@ -1,0 +1,16 @@
+#login { background: #eee; z-index: 10000; position: absolute; top: 30%; right: 10%; padding: 0; width: 350px; }
+#login div.title { z-index: 100; padding: 2px 10px; width: 330px; overflow: hidden; background: #003367; }
+#login div.title h4 { z-index: 100; margin: 10px; padding: 0; color: #ffffff; }
+#login div.inner { z-index: 100; position: relative; padding: 10px;}
+#loginfooter { padding: 0; background: scroll url(../Admin/img/login_footer_bg.jpg); width: 100%; height: 280px; position: absolute; bottom: 0; z-index: -1; }
+input#username, input#password { width: 265px; }
+.cloud { position: absolute; color: #FFF; z-index: 1; }
+div#submit { float: right; padding: 0 5px; }
+#login input,#login .add-on{ height:30px; font-size:22px; font-weight:bold}
+#login input{line-height: normal; vertical-align:middle}
+#login input::-webkit-input-placeholder{ color:#999; font-weight:100; font-size:12px; }
+#login input::-moz-placeholder{ color:#999; font-weight:100; font-size:12px; }
+#login input::-ms-placeholder { color:#999; font-weight:100; font-size:12px; }
+#login button{padding:9px 20px; font-size:22px;font-weight:bold;}
+#login input#verify{width:190px; }
+#login .icon{ font-size:30px;}

@@ -1,0 +1,51 @@
+<include file="Common:header" title="抓取程序"/> {:W('AdminSidebar')}
+<!--main-container-part-->
+
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!--Action boxes-->
+    <div class="container-fluid">
+
+        <!--End-Action boxes-->
+        <!--Chart-box-->
+        <div class="row-fluid">
+            <div class="widget-box">
+                <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+                    <h5>抓取设置</h5>
+                </div>
+                <div class="widget-content">
+                    <div>
+                        <form method="post" action="__URL__/robotAction">
+                            <table>
+                                <tr>
+                                    <td><label for="url">URL</label></td>
+                                    <td><input type="text" name="URL" id="url"/></td>
+                                </tr>
+                                <tr>
+                                    <td>开始字符串</td>
+                                    <td><textarea></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td>结束字符串</td>
+                                    <td><textarea></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td>正则表达式</td>
+                                    <td><input/></td>
+                                    </td></tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-main-container-part-->
+
+<include file="Common:footer"/>

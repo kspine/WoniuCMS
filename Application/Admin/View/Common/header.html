@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>[title]|管理后台</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="content-language" content="zh-CN"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/jquery-ui/jquery-ui.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/fullcalendar.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/matrix-style.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/matrix-media.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/uniform.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/select2.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/jquery.gritter.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/style.css"/>
+    <script src="__PUBLIC__/Scripts/jquery.js"></script>
+    <script src="__PUBLIC__/jquery-ui/jquery-ui.min.js"></script>
+    <script src="__PUBLIC__/Admin/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/Admin/js/jquery.gritter.min.js"></script>
+  <!--  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/uploadify/uploadify.css">
+</head>
+<body>
+<!--Header-part-->
+<div id="header">
+    <h1><a href="__GROUP__">WoniuCMS Admin</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
+                                                      data-target="#profile-messages" class="dropdown-toggle"><i
+                class="icon icon-user"></i> <span
+                class="text">{$Think.session.userName},您好！</span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="" target="_blank"><i class="icon-user"></i>我的资料</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="icon-check"></i>任务</a></li>
+            </ul>
+        </li>
+        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
+                                                   class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
+                class="text">消息</span> <span class="label label-important" id="UnReadMsgCount">0</span> <b
+                class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a class="sAdd" title="收件箱" href="{:U('Msg/index')}"><i class="icon-plus"></i> 收件箱</a></li>
+                <li class="divider"></li>
+                <li><a class="sInbox" id="UnReadMsg" href="#" title="新建消息"><i
+                        class="icon-envelope"></i>新建消息</a></li>
+                <li class="divider"></li>
+                <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i>发件箱</a></li>
+                <li class="divider"></li>
+                <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i>回收站</a></li>
+            </ul>
+        </li>
+        <li class=""><a href="{:U('Config/index')}"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+        <li class=""><a href="{$Think.config.SITE_DOMAIN}" target="new"><i class="icon icon-home"></i> <span
+                class="text">网站首页</span></a></li>
+        <li class=""><a href="{:U('Admin/Index/index')}"><i class="icon icon-home"></i> <span
+                class="text">后台首页</span></a>
+        <li class=""><a href="{:U('Auth/logout')}"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a>
+        </li>
+    </ul>
+</div>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+<div id="search">
+    <form action="{:U('/Search','','php')}" method="get">
+        <input type="text" name="key" placeholder="请输入..."/>
+        <button type="submit" class="tip-bottom" title="搜索"><i class="icon-search icon-white"></i></button>
+    </form>
+</div>
+<!--close-top-serch-->

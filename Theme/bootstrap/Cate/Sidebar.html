@@ -1,0 +1,22 @@
+<div class="sideList list col3">
+    <h3>最新文章</h3>
+
+    <div class="nr">
+        <ul>
+            <foreach name="articleList" item="article">
+                <li><a href="{:U('Article/'.$article['router'])}">{$article.title}</a></li>
+            </foreach>
+        </ul>
+    </div>
+</div>
+<div class="sideList list col3">
+    <h3>最热文章</h3>
+
+    <div class="nr">
+        <ul>
+            <foreach name="hotList" item="hot">
+                <li><a href="{:U('Article/'.$hot['router'])}">{$hot.title}</a></li>
+            </foreach>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<include file="Common:header" title="{$channelTitle}" channelID="{$channelID}"/>
+<div class="container-fluid container">
+    <div class="row-fluid">
+        <div id="banner2" class="banner2 span12"><img src="__PUBLIC__/images/index-03.jpg"/></div>
+    </div>
+    <div class="row-fluid" id="main">
+        <div class="span9" id="channelMain">
+            <h3>{$channelTitle}</h3>
+            <ul>
+                <volist name="alist" id="list">
+                    <li>
+                        <span>{$list.update_time|date="Y/m/d",###}</span>
+                        <a href="{:U('Article/'.$list['router'])}">{$list.title}</a>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+        <div class="span3" id="sidebar">
+            {~W('Cate/Sidebar')}
+        </div>
+    </div>
+</div>
+<include file="Common:footer"/>

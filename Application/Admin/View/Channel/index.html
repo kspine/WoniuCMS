@@ -1,0 +1,58 @@
+<include file="Common:header" title="频道管理"/>{~W('Cate/Sidebar')}
+
+
+<!--main-container-part-->
+
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i>首页</a><a
+                href="#" class="current">频道管理</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+    <!-- content / right -->
+    <div class="container-fluid">
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                <h5>频道列表</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped with-check data-table">
+                    <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>名称</td>
+                        <td>路由</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <volist name="channel" id="channel">
+                        <tr>
+                            <td>{$channel.id}</td>
+                            <td>|———&nbsp;<a href="#" title="{$channel.title}">{$channel.name}</a></td>
+                            <td>{$channel.router}</td>
+                            <td>编辑|删除</td>
+                        </tr>
+                        <volist name="channel['_child']" id="channel_child">
+
+                            <tr>
+                                <td>{$channel_child.id}</td>
+                                <td>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|———&nbsp;<a
+                                        href="#" title="{$channel_child.title}">{$channel_child.name}</a></td>
+                                <td>{$channel_child.router}</td>
+                                <td>编辑|删除</td>
+                            </tr>
+
+                        </volist>
+
+                    </volist>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- end content / right -->
+</div>
+<!-- end content -->
+<include file="Common:footer"/>

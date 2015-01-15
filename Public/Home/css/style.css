@@ -1,0 +1,116 @@
+ @charset "utf-8";
+/* CSS Document */
+/********************************************BASIC*******************************/
+html, body, div, h1, h2, h3, h4, h5, h6, p, ul, li, a { font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "宋体B8B\4F53", simsun, sans-serif; }
+html { font-size: 62.5%;/*10 ÷ 16 × 100% = 62.5%*/ }
+body { font-size: 1.4rem;/*1.4 × 10px = 14px */ padding-top: 40px; }
+p, a {color: #2ecc71; font-size: 14px; font-size: 1.4rem; }/*IE8及之前版本的IE浏览器使用14像素*/
+h1, h2, h3, h4, h5, h6 { color: #27a9e3; font-weight: bold; }
+h1 { font-size: 20px; font-size: 2rem; }
+h2 { font-size: 18px; font-size: 1.8rem; }
+h3 { font-size: 26px; font-size: 1.6rem; }
+h4 { font-size: 14px; font-size: 1.4rem; }
+h5 { font-size: 12px; font-size: 1.2rem; }
+h6 { font-size: 11px; font-size: 1.1rem; }
+a { color: #2ecc71; text-decoration: none; }
+a:hover { color: #F60; text-decoration: underline; }
+img { border: none; }
+ul, li { padding: 0; margin: 0; }
+
+
+
+.nav li a{color: #3498db; font-size: 16px;font-weight:800}
+/********************************************************************************/
+div.banner2{height: 200px; overflow: hidden;}
+ /********************************************************************************/
+ .tiles{ margin: 10px 0;}
+div.col3,div.col9  {  background-color: #EFF0F2;     position: relative;   padding: 0 ;border-radius: 15px 0 0 0;}
+ div.col3 h3,div.col9 h3 { line-height: 28px; border-radius: 15px 0 15px 0;color: #FFF;     background-color: #48C9B0;     border-color: #48C9B0; padding: 5px 20px;margin:0 }
+div.articleList  ul li { width:99%;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;     line-height: 19px;    padding: 6px 0px; }
+div.col3 .nr{margin: 10px;min-height: 250px;}
+div#productShow img{width: 250px;}
+ div.recommend div{margin-bottom:10px;}
+ div.recommend div.metro div{height:50px; width:90%;padding:10px;}
+ div.recommend div.metro b.icon{ font-size:48px; color:#FFF;}
+ div.recommend div#rss{ background: #0CF}
+ div.recommend div#list { background: #FC0}
+ div.recommend div#at { background: #C63;margin-bottom:0;}
+
+ /*********************************buttom************************************/
+.channelList { position: relative; float: left; margin-bottom: 10px; }
+.channelList h3 { border-bottom: #CCC 1px solid; }
+.channelList ul li { width: 45%; height: 26px; float: left; margin-right: 10px; line-height: 26px; overflow: hidden; padding-left: 10px; background: url('../images/hsd.jpg') 0 11px no-repeat; }
+.channelList ul li span { width: 35px; padding: 0 2px; height: 26px; display: block; line-height: 26px; float: right; font-size: 12px; }
+/**********************************************************************************/
+div.article { margin-bottom: 10px; border: 1px solid #F60; background: #fff; }
+div.article span.articleInfo { float: left; line-height: 15px; font-size: 11px; color: #999; }
+div#map{ margin-top: 10px;}
+/********************************end  buttom************************************/
+
+/*********************************sidebar************************************/
+div#sidebar h3 { line-height: 28px; border-bottom: #CCC 1px solid; }
+div#sidebar .sideList { margin-bottom: 10px; }
+div#sidebar .sideList ul li {width:95%;padding-left: 10px; line-height: 24px; overflow: hidden; background: url('../images/hsd.jpg') 0 12px no-repeat; white-space: nowrap; text-overflow: ellipsis; }
+/*********************************sidebar************************************/
+div#main{ margin-top: 10px}
+/******************************footer************************************/
+footer {background: #EDEFF1; min-height: 40px; overflow: hidden;0}
+footer a{ color: #7f8c8d;}
+footer #Copyright { position: relative; right: 10px; top: 10px; float: right; color: #7f8c8d;  }
+/*****************************end footer*********************************/
+
+ div#soMain{}
+.hero-unit{padding: 10px 20px;}
+
+
+ /**********************************************************************/
+
+#articleMain, #channelMain { min-height: 400px; overflow: hidden; }
+#articleMain p { text-indent: 2em; line-height: 21px; font-size: 14px; color: #666; }
+#channelMain h3 { padding: 2px; border-bottom: #CCC 1px solid; }
+#channelMain ul li { width: 100%; line-height: 26px; overflow: hidden; padding-left: 10px; background: url('../images/hsd.jpg') 0 11px no-repeat; }
+#channelMain ul li span { width: 80px; height: 26px; display: block; float: right; font-size: 12px; }
+#channelMain a { color: #09F; text-decoration: none; font-size: 16px; }
+#channelMain a:hover { color: #F60; text-decoration: underline; }
+/********************************************************************************/
+
+/* clearfix */
+ .clear {clear: both; }
+
+
+
+
+
+.masonry:after { content: ''; display: block; clear: both; }
+.masonry .item { width:29.5%; padding: 1%; margin-right: 1%; float: left; border-radius: 5px; }
+.item.w2 { width: 60% }
+/********************************************************************************/
+ @media (min-width: 1200px) {
+.masonry .item { width: 21%; }
+}
+
+/* 平板电脑和小屏电脑之间的分辨率 */
+@media (min-width: 768px) and (max-width: 979px) {
+body { padding-top: 0 }
+.navbar-fixed-top { margin-bottom: 0 }
+.masonry .item { width: 46%; }
+}
+
+/* 横向放置的手机和竖向放置的平板之间的分辨率 */
+@media (max-width: 767px) {
+body { padding-top: 0 }
+.navbar-fixed-top { margin-bottom: 0 }
+.channelList ul li { width: 99%; }
+.masonry .item { width: 45%; }
+header, footer { margin-left: -20px; margin-right: -20px; }
+}
+
+/* 横向放置的手机及分辨率更小的设备 */
+@media (max-width: 480px) {
+body { padding-top: 0 }
+header#show{padding: 10px 0; }
+.navbar-fixed-top { margin-bottom: 0 }
+.channelList ul li { width: 99%; }
+.masonry .item { width: 99%; }
+header, footer { margin-left: -20px; margin-right: -20px; }
+}

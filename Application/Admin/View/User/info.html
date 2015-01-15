@@ -1,0 +1,29 @@
+<include file="Common:header" title="{$userInfo.name}的用户资料"/>
+{:W('AdminSidebar')}
+
+<!-- content -->
+<div id="content">
+    <!-- content / right -->
+    <div id="right">
+        <!-- table -->
+        <div class="box">
+            <!-- box / title -->
+            <div class="title">
+                <h5>{$userInfo.name}的用户资料</h5>
+            </div>
+            <div>
+                {$userInfo.id}
+                {$userInfo.name}
+                {$userInfo.email}
+                {$userInfo.loginCout}
+                {$userInfo.lastLoginTime}
+                {$userInfo.nickName}
+            </div>
+            <!-- end box / title -->
+        </div>
+        <!-- end table -->
+    </div>
+    <!-- end content / right -->
+</div>
+<!-- end content -->
+<include file="Common:footer"/>

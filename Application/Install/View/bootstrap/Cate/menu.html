@@ -1,0 +1,5 @@
+<volist name="menu" id="menu">
+    <li
+    <eq name="menu.id" value="$channelID">class="active"</eq>
+    ><a href="{:U('Channel/'.$menu['id'])}" title="{$menu.title}">{$menu.title}</a> </li>
+</volist>

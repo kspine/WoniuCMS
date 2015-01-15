@@ -1,0 +1,40 @@
+/* ---------------------content -> right -> box------------------------------------ */
+#content div.box { margin: 10px 0 0 0; padding: 0 0 10px 0; clear: both; overflow: hidden; height:auto;background: #ffffff; }
+/* ----------------------	content -> right -> box / title----------------------------- */
+#content div.box div.title ul.links li a:hover { background: url("../Images/title_tab_selected.png") no-repeat bottom center; color: #bfe3ff; }
+#content div.box div.title { width:100%; margin: 0; padding: 0; clear: both; overflow: hidden; background: #336699 url("../Images/title.png") repeat-x; }
+#content div.box div.title h1, #content div.box div.title h2, #content div.box div.title h3, #content div.box div.title h4, #content div.box div.title h5, #content div.box div.title h6 { margin: 0; padding: 11px 0 11px 10px; float: left; border: none; color: #ffffff; }
+#content div.box div.title ul.links { margin: 0; padding: 0; float: right; }
+#content div.box div.title ul.links li { margin: 0; padding: 0; list-style: none; float: left; }
+#content div.box div.title ul.links li a { margin: 0; padding: 13px 16px 12px 16px; height: 1%; display: block; float: left; background: url("../Images/title_link.png") no-repeat top left; border-left: 1px solid #316293; color: #ffffff; font-size: 11px; font-weight: bold; text-decoration: none; }
+#content div.box div.title ul.links li a:hover { background: url("../Images/title_tab_selected.png") no-repeat bottom center; color: #bfe3ff; }
+#content div.box div.title ul.links li.ui-tabs-selected a { background: url("../Images/title_tab_selected.png") no-repeat bottom center; color: #bfe3ff; }
+/* -------------------content -> right -> box / headings-------------------------------- */
+#content div.box h1, #content div.box h2, #content div.box h3, #content div.box h4, #content div.box h5, #content div.box h6 { margin:0; padding: 0; clear: both; overflow: hidden; }
+/* -------------------content -> right -> box / lists------------------------------------ */
+#content div.box dl { margin: 10px 24px 10px 24px; }
+#content div.box dt { margin: 0; font-size: 12px; }
+#content div.box dd { margin: 0; padding: 8px 0 8px 15px; font-size: 12px; }
+#content div.box ul.left { float: left; }
+#content div.box ol.left { float: left; }
+#content div.box li { padding: 4px 0 4px 0; font-size: 12px; }
+#content div.box ol.lower-roman, #content div.box ol.upper-roman { margin: 10px 24px 10px 44px; }
+#content div.box ol.lower-alpha, #content div.box ol.upper-alpha { margin: 10px 24px 10px 44px; }
+#content div.box ol.decimal { margin: 10px 24px 10px 44px; }
+#content div.box ul.disc, #content div.box ul.circle { margin: 10px 24px 10px 38px; }
+#content div.box ul.square { margin: 10px 24px 10px 40px; }
+/* -------------content -> right -> box / Images----------------------------- */
+#content div.box img.left { margin: 10px 10px 10px 0; border: none; float: left; }
+#content div.box img.right { margin: 10px 0 10px 10px; border: none; float: right; }
+/* ------------------------content -> right -> box / search--------------------------- */ 
+#content div.box div.title div.search { margin: 0; padding: 6px 6px 6px 7px; float: right; background: url("../Images/title_link.png") no-repeat top left; border-left: 1px solid #316293; }
+#content div.box div.title div.search div.input { float: left; }
+#content div.box div.title div.search div.input input { border: 1px solid #316293; margin: 0; padding: 5px 7px 4px 7px; border: 1px solid #316293; color: #000000; }
+#content div.box div.title div.search { background: url("../Images/title_link.png") no-repeat top left; border-left: 1px solid #316293; }
+#content div.box div.title div.search div.button { float: left; }
+#content div.box div.title div.search div.button input { margin: 0; color: #000000; font-size: 1.0em; font-weight: bold; margin: 0; padding: 5px 12px; overflow: hidden; background: #4e85bb url("../Images/button_highlight.png") repeat-x; border: 1px solid #316293; border-left: none; color: #FFFFFF; outline: none; outline-style: none; }
+#content div.box div.title div.search div.button input:hover { padding: 5px 12px; background: #46a0c1 url("../Images/button_highlight_selected.png") repeat-x; border: 1px solid #316293; border-left: none; color: #FFFFFF; margin: 0; }
+
+
+
+#content div.box  table th.frist { border-left: none;padding:5px; }

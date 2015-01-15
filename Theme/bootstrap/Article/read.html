@@ -1,0 +1,32 @@
+<include file="Common:header" title="{$article.title}" description="{$article.description}"  keywords="{$article.keywords}"/>
+<div class="container-fluid container">
+    <div class="row-fluid" id="main">
+        <div class="span9" id="mainBody">
+            <div id="map">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{$Think.config.SITE_DOMAIN}">{$Think.config.SITE_NAME}</a> <span   class="divider">/</span>
+                    </li>
+                    <li>
+                        <a href="{:U('channel/'.$channel['router'])}">{$channel.name}</a> <span class="divider">/</span>
+                    </li>
+                    <li class="active">{$article.title}</li>
+                </ul>
+            </div>
+            <div id="articleMain" >
+                <h3>{$article.title}</h3>
+                <hr/>
+                <div id="articleBody"> {$article.content}</div>
+                <hr/>
+                <p>
+                    <span class="articleInfo">{$article.author}发表于{$article.create_time|date="Y-m-d H:i:s",###},被浏览{$article.click}次</span>
+                </p>
+            </div>
+
+        </div>
+        <div class="span3" id="sidebar">
+            {~W('Cate/Sidebar')}
+        </div>
+    </div>
+</div>
+<include file="Common:footer"/>

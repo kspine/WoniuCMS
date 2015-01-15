@@ -1,0 +1,81 @@
+﻿<include file="Common:header" title="{$article.title}文章编辑"/>
+{:W('AdminSidebar')}
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = "__PUBLIC__/Ueditor/";
+    window.ROOT_PATH = "__ROOT__";
+</script>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.all.min.js"></script>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="#" title="后台首页" class="tip-bottom"><i class="icon-home"></i> Home</a>
+            <a href="#" class="current">文章管理</a>
+            <a href="#" class="current">文章编辑</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-list"></i> </span>
+                        <h5>文章编辑</h5>
+                    </div>
+                    <div class="widget-content">
+                        <script type="text/javascript">
+                            //实例化编辑器
+                            var ue = UE.getEditor('editor');
+                            ue.addListener('ready', function () {
+                                this.focus()
+                            });
+                        </script>
+                        <form name="articleEdit" method="post" action="{:U('Article/go?id='.$id)}">
+                            <table style="margin:0; padding:0;width: 100% ">
+                                <tr>
+                                    <td>
+                                        标题:
+                                    </td>
+                                    <td><input type="text" name="info[title]" maxlength="100" value="{$article.title}"
+                                               style="width:50%">
+                                        <select name="info[classID]" style="width: 15%">
+                                            <option value="0">未分类</option>
+                                            <volist name="info[channel]" id="channel">
+                                                <option value="{$channel.id}">{$channel.title}</option>
+                                            </volist>
+                                        </select> <select name="info[status]">
+                                            <option value="1">发布</option>
+                                            <option value="0">存档</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>关键字：</td>
+                                    <td><input name="info[keywords]" style="width: 99%"/></td>
+                                </tr>
+                                <tr>
+                                    <td>简介：</td>
+                                    <td><textarea name="info[description]" placeholder="请输入140字的简介" style="width:98%">{$article.description}</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>下载地址:</td>
+                                    <td>
+                                        <input type="text" style="width:98%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>文件上传：</td>
+                                    <td>
+                                        <input type="file" style="width:98%">
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="hidden" name="id" value="{$id}"/>
+                            <input type="submit" value="提交内容">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Common:footer"/>

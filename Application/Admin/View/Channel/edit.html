@@ -1,0 +1,117 @@
+<include file="Common:header" title="频道分类编辑"/>{~W('Cate/Sidebar')}
+
+
+<!--main-container-part-->
+
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="__GROUP__" title="管理首页" class="tip-bottom"><i class="icon-home"></i>首页</a><a
+                href="#" class="current">频道管理</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+    <!-- content / right -->
+    <div class="container-fluid">
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                <h5>频道列表</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form name="articleEdit" id="articleEdit" method="post"
+                      action="{:U('Content/go','','php')}?Type=Article">
+                    <table id="contentEdit" class="table  ">
+
+                        <tr>
+                            <th class="first">
+                                名称:
+                            </th>
+                            <td><input type="text" name="info[title]"
+                                       class="span8  m-wrap" placeholder="请输入名称" value="{$data.title}">
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="first">
+                                标题:
+                            </th>
+                            <td><input type="text" name="info[title]"
+                                       class="span8  m-wrap" value="{$data.title}">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="first">路由：</th>
+                            <td><input type="text" name="info[router]" class="span8  m-wrap"
+                                       value="{$data.router}"/></td>
+                        </tr>
+                        <tr>
+                            <th class="first">关键字：</th>
+                            <td><input type="text" name="info[keywords]" class="span8  m-wrap"
+                                       placeholder="请输入SEO关键字" value="{$data.keywords}"/></td>
+                        </tr>
+
+                        <tr>
+                            <th class="first">简介：</th>
+                            <td><textarea name="info[description]" placeholder="请输入简介"
+                                          class="span8">{$data.description}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>BANNER:</th>
+                            <td>
+                                <input/>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th>状态：</th>
+                            <td>
+                                <select name="info[status]" class="span2">
+                                    <option value="1">发布</option>
+                                    <option value="0">存档</option>
+                                </select></td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="hidden" name="id" value="{$id}"/>
+                                <!--<input type="hidden" name="info[template]" value="article"/> -->
+                                <input type="submit" class="btn btn-success" value="提交内容">
+
+                                <div id="output" style="padding-right:10px;float: right"></div>
+                        </tr>
+                    </table>
+
+                    <div id="output"></div>
+                    <script>
+                        $(document).ready(function () {
+                            $("#articleEdit").Validform({
+                                tiptype: 3,
+                            });
+                            $("#articleEdit").ajaxForm({
+                                target: '#output',
+                                dataType: 'json',
+                                success: processJson,
+                                error: function () {
+                                    alert('访问错误!');
+                                }
+                            });
+                        });
+                        function processJson(data) {
+                            $("input[name='id']").attr("value", data.id);
+                            $("input[name='info[router]']").attr("value", data.router);
+                            $('#output').fadeIn('slow').html('<p>提交时间：' + data.time + ',文章ID:' + data.id + ',文章链接：<a href=\"' + data.url + '\">' + data.title + '</a></p>');
+                        }
+
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end content / right -->
+</div>
+<!-- end content -->
+<include file="Common:footer"/>

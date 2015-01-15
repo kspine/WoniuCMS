@@ -1,0 +1,254 @@
+<include file="Common:header" title="{$article.title}产品编辑"/>
+{~W('Cate/Sidebar')}
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="#" title="后台首页" class="tip-bottom"><i class="icon-home"></i> Home</a>
+            <a href="#" class="current">产品管理</a>
+            <a href="#" class="current">产品编辑</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-list"></i> </span>
+                        <h5>产品编辑</h5>
+                    </div>
+                    <div class="widget-content">
+
+                        <form name="articleEdit" id="articleEdit" method="post" action="{:U('go','','php')}">
+                            <table id="contentEdit" border="1" style="border: #eeeeee;">
+                                <tr>
+                                    <th class="first">名称:</th>
+                                    <td><input type="text" name="info[name]"
+                                               class="span8  m-wrap" placeholder="请输入标题" value="{$data.name}">
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="first">路由：</th>
+                                    <td><input type="text" name="info[router]" class="span8  m-wrap"
+                                               value="{$data.router}"/></td>
+                                </tr>
+                                <tr>
+                                    <th class="first"> 标题:</th>
+                                    <td><input type="text" name="info[title]"
+                                               class="span8  m-wrap" placeholder="请输入标题" value="{$data.title}">
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="first">关键字：</th>
+                                    <td><input type="text" name="info[keywords]" class="span8  m-wrap"
+                                               placeholder="请输入SEO关键字" value="{$data.keywords}"/></td>
+                                </tr>
+                                <tr>
+                                    <th class="first">简介：</th>
+                                    <td><textarea name="info[description]" placeholder="请输入简介" class="span8">{$data.description}</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>内容:</th>
+                                    <td>
+                                        <script type="text/plain" id="editor" name="info[content]">
+                                            {$data.content}
+
+
+
+
+
+                                        </script>
+                                    </td>
+
+                                <tr>
+                                    <th>产品小图:</th>
+                                    <td>
+                                        <input type="hidden" name="info[small_pic]" id="small_pic"
+                                               value="{$data.small_pic}"/>
+
+                                        <div>
+                                            <if condition="$data.small_pic neq '' "><img id="spic"
+                                                                                         src="__ROOT__/Uploads/{$data.small_pic}"
+                                                                                         width="100" height="100">
+                                                <else/>
+                                                <img id="spic" src="__PUBLIC__/images/nopic.gif" width="100"
+                                                     height="100"></if>
+                                        </div>
+                                        <input id="file_upload" name="images1" type="file" multiple="true"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>产品图集:</th>
+                                    <td>
+                                        <input type="hidden" name="info[pics]" id="pics" value="{$data.pics}"/>
+
+                                        <div id="imgShow"></div>
+                                        <input id="file_upload2" name="images2" type="file"/>
+
+                                        <div id="queue"></div>
+                                        <a class="btn btn-primary"
+                                           href="javascript:$('#file_upload2').uploadify('upload','*')">开始上传</a>
+                                        <a class="btn btn-primary" href="javascript:void(0);"
+                                           onclick="image_manager()">上传图片</a>
+                                        <a class="btn btn-primary" href="javascript:void(0);"
+                                           onclick="files_manager();">上传文件</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>频道：</th>
+                                    <td><select name="info[category_id]" class="span2">
+                                        <volist name="category" id="category">
+                                            <option value="{$category.id}">{$category.title}</option>
+                                            <volist name="category['_child']" id="category_child" key="io">
+                                                <option value="{$category_child.id}">--{$category_child.title}
+                                                </option>
+                                                <volist name="category_child['_child']" id="category_child3" key="ioo">
+                                                    <option value="{$category_child3.id}">---{$category_child3.title}
+                                                    </option>
+                                                </volist>
+                                            </volist>
+                                        </volist></td>
+                                </tr>
+
+                                <tr>
+                                    <th>状态：</th>
+                                    <td>
+                                        <select name="info[status]" class="span2">
+                                            <option value="1">发布</option>
+                                            <option value="0">存档</option>
+                                        </select></td>
+                                </tr>
+
+                                <tr>
+                                    <th>更新时间：
+                                    </th>
+                                    <td>
+                                        <div class="controls">
+                                            <div data-date="12-02-2012" class="input-append date datepicker">
+                                                <input type="text" value="" data-date-format="yyyy/mm/dd"
+                                                       class="span11">
+                                                <span class="add-on"><i class="icon-th"></i></span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <input type="hidden" name="id" value="{$id}"/>
+                                        <input type="submit" class="btn btn-success" value="提交内容">
+
+                                        <div id="output" style="padding-right:10px;float: right"></div>
+                                </tr>
+                            </table>
+
+                            <div id="output"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="__PUBLIC__/Css/Validform.css" type="text/css" media="all"/>
+
+
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = "__PUBLIC__/Ueditor/";
+    var ue;
+    $(function() {
+        window.UEDITOR_CONFIG.savePath = ['Uploads/'];
+        window.UEDITOR_CONFIG.imagePath = '/Uploads/';
+        window.UEDITOR_CONFIG.filePath = '/Uploads/';
+        window.UEDITOR_CONFIG.imageManagerPath = "/Uploads/";
+        //实例化编辑器
+         ue = new UE.ui.Editor();
+        ue.render("editor");
+    });
+    //弹出图片上传对话框
+    function image_manager() {
+        var image_manager = ue.getDialog("insertimage");
+        image_manager.open();
+    }
+    //弹出文件上传的对话框
+    function files_manager() {
+        var files_manager = ue.getDialog("attachment");
+        files_manager.open();
+    }
+</script>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Scripts/jquery.form.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Scripts/Validform_v5.3.2_min.js"></script>
+<script src="__PUBLIC__/Admin/js/bootstrap-datepicker.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#articleEdit").Validform({
+            tiptype: 3,
+        });
+        $("#articleEdit").ajaxForm({
+            target: '#output',
+            dataType: 'json',
+            success: processJson,
+            error: function () {
+                alert('数据错误!');
+            }
+        });
+    });
+    function processJson(data) {
+        $("input[name='id']").attr("value", data.id);
+        $("input[name='info[router]']").attr("value", data.router);
+        $('#output').fadeIn('slow').html('<p>提交时间：' + data.time + ',产品ID:' + data.id + ',文章链接：<a href=\"' + data.url + '\">' + data.title + '</a></p>');
+    }
+
+</script>
+<script src="__PUBLIC__/uploadify/jquery.uploadify.min.js"
+        type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#file_upload').uploadify({
+            'swf': '__PUBLIC__/uploadify/uploadify.swf',
+            'uploader': "{:U('File/imgUpload','','php')}",
+            'buttonText': '缩略图上传',
+            'auto': true,
+            'fileSizeLimit': '500KB',
+            'fileTypeDesc': 'Image Files',
+            'fileTypeExts': '*.gif; *.jpg; *.png',
+            'onUploadSuccess': function (file, data, response) {
+                if (response) {
+                    var obj = jQuery.parseJSON(data);
+                    $('#spic').attr('src', '/Uploads' + obj.thumb);
+                    $('#small_pic').val(obj.image);
+                }
+
+            },
+        });
+        //图二
+        $('#file_upload2').uploadify({
+            'swf': '__PUBLIC__/uploadify/uploadify.swf',
+            'uploader': "{:U('File/imgUpload','','php')}",
+            'buttonText': '图集上传',
+            'auto': false,
+            'fileSizeLimit': '2048KB',
+            'fileTypeDesc': 'Image Files',
+            'fileTypeExts': '*.gif; *.jpg; *.png',
+            'queueID': 'queue',
+            /*            'onQueueComplete' : function(queueData) {
+             alert(queueData.uploadsSuccessful + ' 文件上传成功');
+             if(queueData.uploadsErrored>0){
+             alert(queueData.uploadsErrored+'文件上传失败');
+             }
+             },*/
+            'onUploadSuccess': function (file, data, response) {
+                if (response) {
+                    var obj = jQuery.parseJSON(data);
+                    $('#imgShow').append('<img src=__UPLOAD__' + obj.thumb + '  width="150"/>')
+                    $('#pics').append(obj.image + ',');
+                }
+            },
+        });
+    });
+</script>
+<include file="Common:footer"/>
